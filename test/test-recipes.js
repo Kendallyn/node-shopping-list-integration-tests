@@ -27,7 +27,7 @@ describe('Recipes', function () {
                         res.body.length.should.be.at.least(1);
 
                         res.body.forEach(function (item) {
-                            item.should.be.a.('object');
+                            item.should.be.a('object');
                             item.should.include.keys('id', 'name', 'ingredients');
                         });
                     });

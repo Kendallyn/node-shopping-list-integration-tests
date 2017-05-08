@@ -17,7 +17,7 @@ describe('Recipes', function () {
         return closeServer();
     });
 
-    it('should list items on GET', function () {
+    it('should list recipes on GET', function () {
         return chai.request(app)
             .get('/recipes')
             .then(function (res) {
@@ -33,7 +33,7 @@ describe('Recipes', function () {
             });
     });
 
-    it('should add an item on POST', function () {
+    it('should add a recipe on POST', function () {
         const newRecipe = {
             name: 'coffee',
             ingredients: ['ground coffee', 'hot water']
@@ -46,13 +46,13 @@ describe('Recipes', function () {
                 res.should.be.json;
                 res.body.should.be.a('object');
                 res.body.should.include.keys('id', 'name', 'ingredients');
-                res.body.should.equal(newRecipe.name);
+                res.body.name.should.equal(newRecipe.name);
                 res.body.ingredients.should.be.a('array');
                 res.body.ingredients.should.include.members(newRecipe.ingredients);
             });
     });
 
-    it('should update items on PUT', function () {
+    it('should update recipes on PUT', function () {
         const updateData = {
             name: 'foo',
             ingredients: ['bizz', 'bar']
@@ -76,7 +76,7 @@ describe('Recipes', function () {
             });
     });
 
-    it('should delete items on DELETE', function () {
+    it('should delete recipes on DELETE', function () {
         return chai.request(app)
             .get('/recipes')
             .then(function (res) {
